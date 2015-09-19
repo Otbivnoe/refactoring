@@ -1,5 +1,8 @@
 package com.nikita.refactoring;
 
+import com.nikita.refactoring.interfaces.IReadInterface;
+import com.nikita.refactoring.interfaces.IWriteInterface;
+
 /**
  * Created by nikita on 19/09/15.
  */

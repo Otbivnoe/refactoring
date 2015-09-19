@@ -4,6 +4,8 @@ package com.nikita.refactoring;
  * Created by nikita on 19/09/15.
  */
 
+import com.nikita.refactoring.interfaces.IReadInterface;
+
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.File;

@@ -4,6 +4,8 @@ package com.nikita.refactoring;
  * Created by nikita on 19/09/15.
  */
 
+import com.nikita.refactoring.interfaces.IWriteInterface;
+
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.File;

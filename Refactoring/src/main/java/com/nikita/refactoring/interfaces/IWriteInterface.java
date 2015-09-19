@@ -1,4 +1,4 @@
-package com.nikita.refactoring;
+package com.nikita.refactoring.interfaces;
 
 /**
  * Created by nikita on 19/09/15.
