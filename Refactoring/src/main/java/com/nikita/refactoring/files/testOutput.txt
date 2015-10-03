@@ -1,78 +1,78 @@
-- (void)combineTracks:(NSArray*)tracks combinePath:(NSString*)path deleteCombinedFile:(BOOL)isDelete withCompletion:(void(^)(BOOL success, NSURL *newFileURL))completionBlock
+-  (void)combineTracks:(NSArray*)tracks  combinePath:(NSString*)path  deleteCombinedFile:(BOOL)isDelete  withCompletion:(void(^)(BOOL  success,  NSURL  *newFileURL))completionBlock
 {
-	NSError *error = nil;
-	BOOL ok = NO;
-	CMTime nextClipStartTime = kCMTimeZero;
-	AVMutableComposition *composition = [[AVMutableComposition alloc] init];
-	AVMutableCompositionTrack *compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-	for (AVURLAsset *avAsset in tracks) 
+	NSError  *error  =  nil;
+	BOOL  ok  =  NO;
+	CMTime  nextClipStartTime  =  kCMTimeZero;
+	AVMutableComposition  *composition  =  [[AVMutableComposition  alloc]  init];
+	AVMutableCompositionTrack  *compositionAudioTrack  =  [composition  addMutableTrackWithMediaType:AVMediaTypeAudio  preferredTrackID:kCMPersistentTrackID_Invalid];
+	for  (AVURLAsset  *avAsset  in  tracks)  
 	{
-		CMTimeRange timeRangeInAsset = CMTimeRangeMake(kCMTimeZero, [avAsset duration]);
-		NSArray *clipAudioTracks = [avAsset tracksWithMediaType:AVMediaTypeAudio];
-		if (!clipAudioTracks.count) 
+		CMTimeRange  timeRangeInAsset  =  CMTimeRangeMake(kCMTimeZero,  [avAsset  duration]);
+		NSArray  *clipAudioTracks  =  [avAsset  tracksWithMediaType:AVMediaTypeAudio];
+		if  (!clipAudioTracks.count)  
 		{
 			continue;
 		}
-		AVAssetTrack *clipAudioTrack = clipAudioTracks.lastObject;
-		ok = [compositionAudioTrack insertTimeRange:timeRangeInAssetofTrack:clipAudioTrackatTime:nextClipStartTime error:&error];
-		if (!ok) 
+		AVAssetTrack  *clipAudioTrack  =  clipAudioTracks.lastObject;
+		ok  =  [compositionAudioTrack  insertTimeRange:timeRangeInAssetofTrack:clipAudioTrackatTime:nextClipStartTime  error:&error];
+		if  (!ok)  
 		{
-			NSLog(@"Current Video Track Error: %@",error);
+			NSLog(@"Current  Video  Track  Error:  %@",error);
 		}
-		nextClipStartTime = CMTimeAdd(nextClipStartTime, timeRangeInAsset.duration);
+		nextClipStartTime  =  CMTimeAdd(nextClipStartTime,  timeRangeInAsset.duration);
 	}
-	AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:composition presetName:AVAssetExportPresetAppleM4A];
-	if (!exportSession) 
+	AVAssetExportSession  *exportSession  =  [AVAssetExportSession  exportSessionWithAsset:composition  presetName:AVAssetExportPresetAppleM4A];
+	if  (!exportSession)  
 	{
-		if (completionBlock) 
+		if  (completionBlock)  
 		{
-			completionBlock(NO, nil);
+			completionBlock(NO,  nil);
 		}
 	}
-	NSString *combinedFileName = [[NSUUID UUID] UUIDString];
-	NSString *soundOneNew = [path stringByAppendingPathComponent:combinedFileName];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:[soundOneNew stringByAppendingString:@".m4a"]]) 
+	NSString  *combinedFileName  =  [[NSUUID  UUID]  UUIDString];
+	NSString  *soundOneNew  =  [path  stringByAppendingPathComponent:combinedFileName];
+	if  ([[NSFileManager  defaultManager]  fileExistsAtPath:[soundOneNew  stringByAppendingString:@".m4a"]])  
 	{
-		soundOneNew = [soundOneNew stringByAppendingString:@"copy.m4a"];
+		soundOneNew  =  [soundOneNew  stringByAppendingString:@"copy.m4a"];
 	}
- 	else 
+	  	else  
 	{
-		soundOneNew = [soundOneNew stringByAppendingString:@".m4a"];
+		soundOneNew  =  [soundOneNew  stringByAppendingString:@".m4a"];
 	}
-	exportSession.outputURL = [NSURL fileURLWithPath:soundOneNew];
-	exportSession.outputFileType = AVFileTypeAppleM4A;
-	[exportSession exportAsynchronouslyWithCompletionHandler:^
+	exportSession.outputURL  =  [NSURL  fileURLWithPath:soundOneNew];
+	exportSession.outputFileType  =  AVFileTypeAppleM4A;
+	[exportSession  exportAsynchronouslyWithCompletionHandler:^
 	{
-		if (AVAssetExportSessionStatusCompleted == exportSession.status) 
+		if  (AVAssetExportSessionStatusCompleted  ==  exportSession.status)  
 		{
 			NSLog(@"AVAssetExportSessionStatusCompleted");
-			if (isDelete) 
+			if  (isDelete)  
 			{
-				NSFileManager *fileManager = [NSFileManager defaultManager];
-				NSError *error;
-				for (AVURLAsset *avAsset in tracks) 
+				NSFileManager  *fileManager  =  [NSFileManager  defaultManager];
+				NSError  *error;
+				for  (AVURLAsset  *avAsset  in  tracks)  
 				{
-					[fileManager removeItemAtPath:avAsset.URL.path error:&error];
+					[fileManager  removeItemAtPath:avAsset.URL.path  error:&error];
 				}
 			}
-			if (completionBlock) 
+			if  (completionBlock)  
 			{
-				completionBlock(YES, exportSession.outputURL);
+				completionBlock(YES,  exportSession.outputURL);
 			}
 		}
- 		else 
+		  		else  
 		{
-			if (completionBlock) 
+			if  (completionBlock)  
 			{
-				completionBlock(NO, nil);
+				completionBlock(NO,  nil);
 			}
-			if (AVAssetExportSessionStatusFailed == exportSession.status) 
+			if  (AVAssetExportSessionStatusFailed  ==  exportSession.status)  
 			{
 				NSLog(@"AVAssetExportSessionStatusFailed");
 			}
- 			else 
+			  			else  
 			{
-				NSLog(@"Export Session Status: %ld", (long)exportSession.status);
+				NSLog(@"Export  Session  Status:  %ld",  (long)exportSession.status);
 			}
 		}
 	}
@@ -80,73 +80,73 @@
 	return;
 }
 
-- (void)stopRecord
+-  (void)stopRecord
 {
-	[self.audioRecorder stop];
+	[self.audioRecorder  stop];
 }
 
-- (void)playWithFileURL:(NSURL*)fileURL
+-  (void)playWithFileURL:(NSURL*)fileURL
 {
-	if (self.audioRecorder.isRecording) 
+	if  (self.audioRecorder.isRecording)  
 	{
 		return;
 	}
-	if (![self.audioPlayer.url.absoluteString isEqualToString:fileURL.absoluteString])
+	if  (![self.audioPlayer.url.absoluteString  isEqualToString:fileURL.absoluteString])
 	{
-		AVAudioSession *session = [AVAudioSession sharedInstance];
-		[session setCategory:AVAudioSessionCategorySoloAmbient error:nil];
-		NSError *error = nil;
-		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
-		self.audioPlayer.delegate = self;
-		[self.audioPlayer play];
+		AVAudioSession  *session  =  [AVAudioSession  sharedInstance];
+		[session  setCategory:AVAudioSessionCategorySoloAmbient  error:nil];
+		NSError  *error  =  nil;
+		self.audioPlayer  =  [[AVAudioPlayer  alloc]  initWithContentsOfURL:fileURL  error:&error];
+		self.audioPlayer.delegate  =  self;
+		[self.audioPlayer  play];
 	}
- 	else 
+	  	else  
 	{
-		if ([self.audioPlayer isPlaying]) 
+		if  ([self.audioPlayer  isPlaying])  
 		{
-			[self pausePlaying];
+			[self  pausePlaying];
 		}
- 		else 
+		  		else  
 		{
-			[self.audioPlayer play];
+			[self.audioPlayer  play];
 		}
- 	}
+		  	}
 }
 
-- (void)pausePlaying
+-  (void)pausePlaying
 {
-	[self.audioPlayer pause];
-	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-	[audioSession setActive:NO error:nil];
+	[self.audioPlayer  pause];
+	AVAudioSession  *audioSession  =  [AVAudioSession  sharedInstance];
+	[audioSession  setActive:NO  error:nil];
 }
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+-  (void)audioPlayerDidFinishPlaying:(AVAudioPlayer  *)player  successfully:(BOOL)flag
 {
-	if ([self.delegaterespondsToSelector:@selector(audioManagerAudioPlayerDidFinishPlaying:successfully:)]) 
+	if  ([self.delegaterespondsToSelector:@selector(audioManagerAudioPlayerDidFinishPlaying:successfully:)])  
 	{
-		[self.delegate audioManagerAudioPlayerDidFinishPlaying:self successfully:flag];
+		[self.delegate  audioManagerAudioPlayerDidFinishPlaying:self  successfully:flag];
 	}
 }
-- (CGFloat)averangeMetering
+-  (CGFloat)averangeMetering
 {
-	[self.audioRecorder updateMeters];
-	return [_audioRecorder averagePowerForChannel:0];
+	[self.audioRecorder  updateMeters];
+	return  [_audioRecorder  averagePowerForChannel:0];
 }
-- (BOOL)isRecording
+-  (BOOL)isRecording
 {
-	return _audioRecorder.isRecording;
+	return  _audioRecorder.isRecording;
 }
-- (NSTimeInterval)recordingTime
+-  (NSTimeInterval)recordingTime
 {
-	return _audioRecorder.currentTime;
+	return  _audioRecorder.currentTime;
 }
-- (NSTimeInterval)currentTime
+-  (NSTimeInterval)currentTime
 {
-	return _audioPlayer.currentTime;
+	return  _audioPlayer.currentTime;
 }
-- (NSTimeInterval)duration
+-  (NSTimeInterval)duration
 {
-	return _audioPlayer.duration;
+	return  _audioPlayer.duration;
 }
 
 

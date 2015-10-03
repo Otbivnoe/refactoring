@@ -1,60 +1,25 @@
 package com.nikita.refactoring;
 
+import com.nikita.refactoring.Handlers.IHandler;
+import com.nikita.refactoring.LanguagesFactory.LanguageFactory;
 import com.nikita.refactoring.interfaces.IReadInterface;
 import com.nikita.refactoring.interfaces.IWriteInterface;
+import java.util.List;
 
 /**
  * Created by nikita on 19/09/15.
  */
+
 public class Parser
 {
     private int tabCount = 0;
     private char prevSymbol = ' ';
 
-    String newStringForCharacter(char symbol)
+    public List<IHandler> handlers;
+
+    public Parser(LanguageFactory factory)
     {
-        String newString = new String();
-
-        switch (symbol)
-        {
-            case '{':
-            {
-                String spaces = currentSpaces();
-                tabCount++;
-                newString = "\n" + spaces + String.valueOf('{') + "\n";
-                break;
-            }
-            case ';':
-            {
-                newString = String.valueOf(';') + "\n";
-                break;
-            }
-            case '}':
-            {
-                tabCount--;
-                newString = currentSpaces() + String.valueOf('}') + "\n";
-                break;
-            }
-            case ' ':
-            {
-                newString = String.valueOf(symbol);
-                break;
-            }
-            default:
-            {
-                if (prevSymbol == ';' || prevSymbol == '{' || prevSymbol == '}') {
-                    newString = currentSpaces() + String.valueOf(symbol);
-                } else {
-                    newString = String.valueOf(symbol);
-                }
-                break;
-            }
-        }
-
-        if (symbol != ' ') {
-            prevSymbol = symbol;
-        }
-        return newString;
+        this.handlers = factory.refactoringHandlers();
     }
 
     String currentSpaces()
@@ -69,11 +34,15 @@ public class Parser
 
     public void startRefactoring(IWriteInterface write, IReadInterface reader)
     {
+        Context context = new Context();
+
         while (reader.isElementAvailable()) {
-            char element = reader.readElement();
-            String newElement = newStringForCharacter(element);
-            System.out.print(newElement);
-            write.writeString(newElement);
+            context.currentCharacter = reader.readElement();
+
+            for (IHandler handler : this.handlers) {
+                String newString = handler.handle(context);
+                write.writeString(newString);
+            }
         }
     }
 }

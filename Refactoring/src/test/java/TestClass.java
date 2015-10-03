@@ -4,9 +4,8 @@
 
 import static org.junit.Assert.assertEquals;
 
+import com.nikita.refactoring.LanguagesFactory.ObjCFactory;
 import com.nikita.refactoring.Parser;
-import com.nikita.refactoring.ReadFromFile;
-import com.nikita.refactoring.WriteToFile;
 import com.nikita.refactoring.testClasses.ReadFromString;
 import com.nikita.refactoring.testClasses.WriteToString;
 import org.junit.Test;
@@ -16,7 +15,7 @@ public class TestClass
     @Test
     public void testString()
     {
-        Parser parser = new Parser();
+        Parser parser = new Parser(new ObjCFactory());
         WriteToString writer = new WriteToString();
         ReadFromString reader = new ReadFromString("string(){cout << s;}");
 

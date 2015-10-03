@@ -1,10 +1,1 @@
-package com.nikita.refactoring.interfaces;
-
-/**
- * Created by nikita on 19/09/15.
- */
-public interface IReadInterface
-{
-    boolean isElementAvailable();
-    char readElement();
-}
+package com.nikita.refactoring.interfaces;/** * Created by nikita on 19/09/15. */public interface IReadInterface{    boolean isElementAvailable();    char readElement();}
