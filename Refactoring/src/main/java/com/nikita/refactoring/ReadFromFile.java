@@ -4,6 +4,7 @@ package com.nikita.refactoring;
  * Created by nikita on 19/09/15.
  */
 
+import com.google.inject.Inject;
 import com.nikita.refactoring.interfaces.IReadInterface;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class ReadFromFile implements IReadInterface
     private File file;
     private FileInputStream fileInputStream;
 
+    @Inject
     public ReadFromFile(String fileName)
     {
         this.fileName = fileName;

@@ -1,9 +1,10 @@
 package com.nikita.refactoring;
 
+import com.google.inject.Inject;
 import com.nikita.refactoring.Handlers.IHandler;
-import com.nikita.refactoring.LanguagesFactory.LanguageFactory;
 import com.nikita.refactoring.interfaces.IReadInterface;
 import com.nikita.refactoring.interfaces.IWriteInterface;
+import com.nikita.refactoring.LanguagesFactory.ILanguageFactory;
 import java.util.List;
 
 /**
@@ -12,24 +13,12 @@ import java.util.List;
 
 public class Parser
 {
-    private int tabCount = 0;
-    private char prevSymbol = ' ';
+    private final List<IHandler> handlers;
 
-    public List<IHandler> handlers;
-
-    public Parser(LanguageFactory factory)
+    @Inject
+    public Parser(ILanguageFactory factory)
     {
         this.handlers = factory.refactoringHandlers();
-    }
-
-    String currentSpaces()
-    {
-        String spaces = new String();
-        for (int i = 0; i < tabCount; i++) {
-            spaces += "\t";
-        }
-
-        return spaces;
     }
 
     public void startRefactoring(IWriteInterface write, IReadInterface reader)

@@ -4,6 +4,7 @@ package com.nikita.refactoring;
  * Created by nikita on 19/09/15.
  */
 
+import com.google.inject.Inject;
 import com.nikita.refactoring.interfaces.IWriteInterface;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class WriteToFile implements IWriteInterface
     private File file;
     private FileOutputStream fileOutputStream;
 
+    @Inject
     public WriteToFile(String fileName) throws IOException {
         this.fileName = fileName;
         file = new File(fileName);
