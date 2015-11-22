@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by nikita on 04/11/15.
  */
-public class BillingModule extends AbstractModule {
+public class RefactorModule extends AbstractModule {
 
     final static String OUTPUT_FILE_NAME = "/Users/nikita/Documents/Projects/Universe/TRPO/gitRefactoring/Refactoring/src/main/java/com/nikita/refactoring/files/testOutput.txt";
     final static String FILE_NAME = "/Users/nikita/Documents/Projects/Universe/TRPO/gitRefactoring/Refactoring/src/main/java/com/nikita/refactoring/files/test2.txt";
