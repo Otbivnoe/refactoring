@@ -10,21 +10,21 @@ public class ObjcCharacterHandler extends ObjcHandler implements IHandler
 {
     public String handle(Context context)
     {
-        if (context.currentCharacter == OPEN_BRACE_CHARACTER ||
-            context.currentCharacter == CLOSE_BRACE_CHARACTER ||
-            context.currentCharacter == SEMICON_CHARACTER ||
-            context.currentCharacter == SPACE_CHARACTER) {
+        if (context.getCurrentCharacter() == OPEN_BRACE_CHARACTER ||
+            context.getCurrentCharacter() == CLOSE_BRACE_CHARACTER ||
+            context.getCurrentCharacter() == SEMICON_CHARACTER ||
+            context.getCurrentCharacter() == SPACE_CHARACTER) {
             return "";
         }
 
-        if (context.prevCharacter == SEMICON_CHARACTER ||
-            context.prevCharacter == OPEN_BRACE_CHARACTER ||
-            context.prevCharacter == CLOSE_BRACE_CHARACTER) {
+        if (context.getPrevCharacter() == SEMICON_CHARACTER ||
+            context.getPrevCharacter() == OPEN_BRACE_CHARACTER ||
+            context.getPrevCharacter() == CLOSE_BRACE_CHARACTER) {
                 setPrevCharacterForContext(context);
-                return currentSpacesForContext(context) + String.valueOf(context.currentCharacter);
+                return currentSpacesForContext(context) + String.valueOf(context.getCurrentCharacter());
         } else {
             setPrevCharacterForContext(context);
-            return  String.valueOf(context.currentCharacter);
+            return  String.valueOf(context.getCurrentCharacter());
         }
     }
 }

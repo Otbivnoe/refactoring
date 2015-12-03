@@ -10,8 +10,8 @@ public class ObjcHandler
     String currentSpacesForContext(Context context)
     {
         String spaces = new String();
-        for (int i = 0; i < context.spaceCount; i++) {
-            spaces += context.spaceSize;
+        for (int i = 0; i < context.getspaceCount(); i++) {
+            spaces += context.getSpaceSize();
         }
 
         return spaces;
@@ -19,8 +19,8 @@ public class ObjcHandler
 
     void setPrevCharacterForContext(Context context)
     {
-        if (context.currentCharacter != ' ') {
-            context.prevCharacter = context.currentCharacter;
+        if (context.getCurrentCharacter() != ' ') {
+            context.setPrevCharacter(context.getCurrentCharacter());
         }
     }
 }

@@ -1,42 +1,32 @@
 package com.nikita.refactoring.Guice;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
 
 import com.nikita.refactoring.LanguagesFactory.ILanguageFactory;
-import com.nikita.refactoring.ReadFromFile;
-import com.nikita.refactoring.WriteToFile;
 import com.nikita.refactoring.interfaces.IReadInterface;
 import com.nikita.refactoring.interfaces.IWriteInterface;
 
-import java.io.IOException;
-
+import java.lang.ClassNotFoundException;
 
 /**
  * Created by nikita on 04/11/15.
  */
 public class RefactorModule extends AbstractModule {
 
-    final static String OUTPUT_FILE_NAME = "/Users/nikita/Documents/Projects/Universe/TRPO/gitRefactoring/Refactoring/src/main/java/com/nikita/refactoring/files/testOutput.txt";
-    final static String FILE_NAME = "/Users/nikita/Documents/Projects/Universe/TRPO/gitRefactoring/Refactoring/src/main/java/com/nikita/refactoring/files/test2.txt";
-
     @Override
     protected void configure()
     {
-        bind(ILanguageFactory.class).toProvider(ObjcFactoryProvider.class);
-    }
+        try {
+            Class ILanguageFactoryProviderClass = Class.forName((String) JsonHelper.getObjectForKey("ILanguageFactoryProvider"));
+            Class IWriteInterfaceProviderClass = Class.forName((String) JsonHelper.getObjectForKey("IWriteInterfaceProvider"));
+            Class IReadInterfaceProviderClass = Class.forName((String) JsonHelper.getObjectForKey("IReadInterfaceProvider"));
 
-    @Provides
-    IWriteInterface provideWriteToFile() throws IOException
-    {
-        WriteToFile writer = new WriteToFile(OUTPUT_FILE_NAME);
-        return writer;
-    }
+            bind(ILanguageFactory.class).toProvider(ILanguageFactoryProviderClass);
+            bind(IWriteInterface.class).toProvider(IWriteInterfaceProviderClass);
+            bind(IReadInterface.class).toProvider(IReadInterfaceProviderClass);
 
-    @Provides
-    IReadInterface provideReadFromFile() throws IOException
-    {
-        ReadFromFile reader = new ReadFromFile(FILE_NAME);
-        return reader;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

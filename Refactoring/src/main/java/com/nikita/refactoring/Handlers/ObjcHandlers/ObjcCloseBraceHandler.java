@@ -10,11 +10,11 @@ public class ObjcCloseBraceHandler extends ObjcHandler implements IHandler
 {
     public String handle(Context context)
     {
-        if (context.currentCharacter != CLOSE_BRACE_CHARACTER) {
+        if (context.getCurrentCharacter() != CLOSE_BRACE_CHARACTER) {
             return "";
         }
 
-        context.spaceCount--;
+        context.setSpaceCount(context.getspaceCount()-1);
         setPrevCharacterForContext(context);
         return currentSpacesForContext(context) + String.valueOf(CLOSE_BRACE_CHARACTER) + "\n";
     }

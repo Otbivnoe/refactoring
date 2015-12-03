@@ -26,7 +26,7 @@ public class Parser
         Context context = new Context();
 
         while (reader.isElementAvailable()) {
-            context.currentCharacter = reader.readElement();
+            context.setCurrentCharacter(reader.readElement());
 
             for (IHandler handler : this.handlers) {
                 String newString = handler.handle(context);

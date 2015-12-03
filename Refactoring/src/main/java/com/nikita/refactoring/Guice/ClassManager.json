@@ -1,0 +1,18 @@
+{
+
+  "ILanguageFactoryProvider"        : "com.nikita.refactoring.Guice.ObjcFactoryProvider",
+  "IReadInterfaceProvider"          : "com.nikita.refactoring.Guice.ReadFromFileProvider",
+  "IWriteInterfaceProvider"         : "com.nikita.refactoring.Guice.WriteForFileProvider",
+
+  "OutputFileName"          : "/Users/nikita/Documents/Projects/Universe/TRPO/gitRefactoring/Refactoring/src/main/java/com/nikita/refactoring/files/testOutput.txt",
+  "InputFileName"           : "/Users/nikita/Documents/Projects/Universe/TRPO/gitRefactoring/Refactoring/src/main/java/com/nikita/refactoring/files/test2.txt",
+
+  "ObjcFactoryHandlers": [
+    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcCharacterHandler",
+    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSpaceHandler",
+    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcCloseBraceHandler",
+    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcOpenBraceHandler",
+    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSemicolonHandler"
+  ]
+
+}

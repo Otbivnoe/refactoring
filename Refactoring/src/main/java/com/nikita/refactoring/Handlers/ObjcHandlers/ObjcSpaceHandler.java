@@ -10,7 +10,7 @@ public class ObjcSpaceHandler extends ObjcHandler implements IHandler
 {
     public String handle(Context context)
     {
-        if (context.currentCharacter != SPACE_CHARACTER) {
+        if (context.getCurrentCharacter() != SPACE_CHARACTER) {
             return "";
         }
 

@@ -5,10 +5,10 @@ package com.nikita.refactoring;
  */
 public class Context
 {
-    public char prevCharacter;
-    public char currentCharacter;
-    public String spaceSize;
-    public int spaceCount;
+    private char prevCharacter;
+    private char currentCharacter;
+    private int spaceCount;
+    private String spaceSize;
 
     public Context()
     {
@@ -25,7 +25,39 @@ public class Context
     {
         this.prevCharacter = ' ';
         this.currentCharacter = ' ';
-        this.spaceSize = "\t";
         this.spaceCount = 0;
+        this.spaceSize = "\t";
+    }
+
+    public char getPrevCharacter() {
+        return prevCharacter;
+    }
+
+    public char getCurrentCharacter() {
+        return currentCharacter;
+    }
+
+    public int getspaceCount() {
+        return spaceCount;
+    }
+
+    public String getSpaceSize() {
+        return spaceSize;
+    }
+
+    public void setPrevCharacter(char prevCharacter) {
+        this.prevCharacter = prevCharacter;
+    }
+
+    public void setCurrentCharacter(char currentCharacter) {
+        this.currentCharacter = currentCharacter;
+    }
+
+    public void setSpaceCount(int spaceCount) {
+        this.spaceCount = spaceCount;
+    }
+
+    public void setSpaceSize(String spaceSize) {
+        this.spaceSize = spaceSize;
     }
 }

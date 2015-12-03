@@ -10,7 +10,7 @@ public class ObjcSemicolonHandler extends ObjcHandler implements IHandler
 {
     public String handle(Context context)
     {
-        if (context.currentCharacter != SEMICON_CHARACTER) {
+        if (context.getCurrentCharacter() != SEMICON_CHARACTER) {
             return "";
         }
 
