@@ -10,13 +10,6 @@ public class ObjcCharacterHandler extends ObjcHandler implements IHandler
 {
     public String handle(Context context)
     {
-        if (context.getCurrentCharacter() == OPEN_BRACE_CHARACTER ||
-            context.getCurrentCharacter() == CLOSE_BRACE_CHARACTER ||
-            context.getCurrentCharacter() == SEMICON_CHARACTER ||
-            context.getCurrentCharacter() == SPACE_CHARACTER) {
-            return "";
-        }
-
         if (context.getPrevCharacter() == SEMICON_CHARACTER ||
             context.getPrevCharacter() == OPEN_BRACE_CHARACTER ||
             context.getPrevCharacter() == CLOSE_BRACE_CHARACTER) {

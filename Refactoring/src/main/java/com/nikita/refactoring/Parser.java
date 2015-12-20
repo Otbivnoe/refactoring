@@ -15,7 +15,6 @@ public class Parser
 {
     private final List<IHandler> handlers;
 
-    @Inject
     public Parser(ILanguageFactory factory)
     {
         this.handlers = factory.refactoringHandlers();
@@ -27,10 +26,14 @@ public class Parser
 
         while (reader.isElementAvailable()) {
             context.setCurrentCharacter(reader.readElement());
+            context.setRunNextHandler(true);
 
             for (IHandler handler : this.handlers) {
                 String newString = handler.handle(context);
                 write.writeString(newString);
+                if (!context.isRunNextHandler()) {
+                    break;
+                }
             }
         }
     }

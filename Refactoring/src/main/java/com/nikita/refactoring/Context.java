@@ -9,6 +9,7 @@ public class Context
     private char currentCharacter;
     private int spaceCount;
     private String spaceSize;
+    private boolean isRunNextHandler;
 
     public Context()
     {
@@ -45,6 +46,10 @@ public class Context
         return spaceSize;
     }
 
+    public boolean isRunNextHandler() {
+        return isRunNextHandler;
+    }
+
     public void setPrevCharacter(char prevCharacter) {
         this.prevCharacter = prevCharacter;
     }
@@ -60,4 +65,6 @@ public class Context
     public void setSpaceSize(String spaceSize) {
         this.spaceSize = spaceSize;
     }
+
+    public void setRunNextHandler(boolean runNextHandler) { this.isRunNextHandler = runNextHandler; }
 }

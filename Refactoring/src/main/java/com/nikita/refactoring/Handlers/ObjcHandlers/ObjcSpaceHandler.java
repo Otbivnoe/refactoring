@@ -14,6 +14,7 @@ public class ObjcSpaceHandler extends ObjcHandler implements IHandler
             return "";
         }
 
+        context.setRunNextHandler(false);
         setPrevCharacterForContext(context);
         return String.valueOf(SPACE_CHARACTER);
     }

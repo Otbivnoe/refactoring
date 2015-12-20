@@ -5,6 +5,8 @@ package com.nikita.refactoring;
  */
 
 import com.nikita.refactoring.interfaces.IReadInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.FileInputStream;
@@ -12,6 +14,8 @@ import java.io.File;
 
 public class ReadFromFile implements IReadInterface
 {
+    private static final Logger log = LoggerFactory.getLogger(ReadFromFile.class);
+
     private String fileName;
     private File file;
     private FileInputStream fileInputStream;
@@ -24,7 +28,7 @@ public class ReadFromFile implements IReadInterface
         try {
             fileInputStream = new FileInputStream(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("IOException", e);
         }
     }
 
@@ -34,8 +38,9 @@ public class ReadFromFile implements IReadInterface
             return (fileInputStream.available() > 0);
         }catch (IOException e) {
             e.printStackTrace();
-            return false;
+            log.error("IOException", e);
         }
+        return false;
     }
 
     public char readElement()
@@ -43,8 +48,9 @@ public class ReadFromFile implements IReadInterface
         try {
             return (char) fileInputStream.read();
         } catch (IOException e) {
-            return ' ';
+            log.error("IOException", e);
         }
+        return ' ';
     }
 
     protected void finalize() throws IOException

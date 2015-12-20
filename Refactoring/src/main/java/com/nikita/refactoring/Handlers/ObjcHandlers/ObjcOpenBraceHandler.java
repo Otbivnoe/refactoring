@@ -14,6 +14,8 @@ public class ObjcOpenBraceHandler extends ObjcHandler implements IHandler
             return "";
         }
 
+        context.setRunNextHandler(false);
+        
         String spaces = currentSpacesForContext(context);
         context.setSpaceCount(context.getspaceCount()+1);
         setPrevCharacterForContext(context);

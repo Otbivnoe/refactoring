@@ -5,6 +5,7 @@ package com.nikita.refactoring;
  */
 
 import com.nikita.refactoring.Guice.IoCManager;
+import com.nikita.refactoring.LanguagesFactory.ILanguageFactory;
 import com.nikita.refactoring.interfaces.IReadInterface;
 import com.nikita.refactoring.interfaces.IWriteInterface;
 
@@ -16,7 +17,8 @@ public class Refactoring
     {
         IoCManager iocManager = new IoCManager();
 
-        Parser parser = iocManager.getInstance(Parser.class);
+        ILanguageFactory factory = iocManager.getInstance(ILanguageFactory.class);
+        Parser parser = new Parser(factory);
 
         IWriteInterface writer = iocManager.getInstance(IWriteInterface.class);
         IReadInterface reader = iocManager.getInstance(IReadInterface.class);

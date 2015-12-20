@@ -5,6 +5,8 @@ package com.nikita.refactoring;
  */
 
 import com.nikita.refactoring.interfaces.IWriteInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.FileOutputStream;
@@ -12,6 +14,8 @@ import java.io.File;
 
 public class WriteToFile implements IWriteInterface
 {
+    private static final Logger log = LoggerFactory.getLogger(WriteToFile.class);
+
     private String fileName;
     private File file;
     private FileOutputStream fileOutputStream;
@@ -24,7 +28,7 @@ public class WriteToFile implements IWriteInterface
         try {
             fileOutputStream = new FileOutputStream(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("IOException", e);
         }
     }
 
@@ -35,7 +39,7 @@ public class WriteToFile implements IWriteInterface
         try {
             fileOutputStream.write(contentInBytes);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("IOException", e);
         }
     }
 

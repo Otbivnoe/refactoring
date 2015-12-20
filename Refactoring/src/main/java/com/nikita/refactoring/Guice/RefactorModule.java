@@ -6,12 +6,17 @@ import com.nikita.refactoring.LanguagesFactory.ILanguageFactory;
 import com.nikita.refactoring.interfaces.IReadInterface;
 import com.nikita.refactoring.interfaces.IWriteInterface;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.ClassNotFoundException;
 
 /**
  * Created by nikita on 04/11/15.
  */
 public class RefactorModule extends AbstractModule {
+
+    private static final Logger log = LoggerFactory.getLogger(RefactorModule.class);
 
     @Override
     protected void configure()
@@ -26,7 +31,9 @@ public class RefactorModule extends AbstractModule {
             bind(IReadInterface.class).toProvider(IReadInterfaceProviderClass);
 
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            log.error("Class not found", e);
+        } catch (NullPointerException e) {
+            log.error("Null pointer", e);
         }
     }
 }

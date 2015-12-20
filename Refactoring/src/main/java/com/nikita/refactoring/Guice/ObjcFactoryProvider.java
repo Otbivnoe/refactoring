@@ -10,12 +10,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by nikita on 04/11/15.
  */
 public class ObjcFactoryProvider implements Provider<ILanguageFactory>
 {
+    private static final Logger log = LoggerFactory.getLogger(ObjcFactoryProvider.class);
+
     public ILanguageFactory get()
     {
         List<IHandler> handlers = new LinkedList<IHandler>();
@@ -26,11 +30,11 @@ public class ObjcFactoryProvider implements Provider<ILanguageFactory>
                 Class handlerClass = Class.forName(str);
                 handlers.add((IHandler) handlerClass.newInstance());
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                log.error("Class not found", e);
             } catch (InstantiationException e) {
-                e.printStackTrace();
+                log.error("InstantiationException", e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                log.error("IllegalAccessException", e);
             }
         }
         return new ObjCFactory(handlers);
