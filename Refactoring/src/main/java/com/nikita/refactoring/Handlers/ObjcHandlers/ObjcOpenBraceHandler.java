@@ -10,15 +10,11 @@ public class ObjcOpenBraceHandler extends ObjcHandler implements IHandler
 {
     public String handle(Context context)
     {
-        if (context.getCurrentCharacter() != OPEN_BRACE_CHARACTER) {
-            return "";
-        }
-
-        context.setRunNextHandler(false);
-        
         String spaces = currentSpacesForContext(context);
         context.setSpaceCount(context.getspaceCount()+1);
+        context.setCurrentStage(Context.HandlerStage.SpecialSymbol);
         setPrevCharacterForContext(context);
+
         return "\n" + spaces + String.valueOf(OPEN_BRACE_CHARACTER) + "\n";
     }
 }

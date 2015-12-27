@@ -11,8 +11,36 @@
     "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSpaceHandler",
     "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcCloseBraceHandler",
     "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcOpenBraceHandler",
-    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSemicolonHandler",
-    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcCharacterHandler"
-  ]
+    "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSemicolonHandler"
+  ],
+
+  "CurrentMapHandlers" : "ObjCMapHandlers",
+
+  "ObjCMapHandlers" :
+  {
+      "}" :
+      {
+        "Default" :       "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcCloseBraceHandler",
+        "SpecialSymbol" : "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcCloseBraceHandler"
+      },
+
+      "{" :
+      {
+        "Default" :       "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcOpenBraceHandler",
+        "SpecialSymbol" : "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcOpenBraceHandler"
+      },
+
+      ";" :
+      {
+        "Default" :       "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSemicolonHandler",
+        "SpecialSymbol" : "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSemicolonHandler"
+      },
+
+      "others" :
+      {
+        "Default" :       "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcDefaultCharacterHandler",
+        "SpecialSymbol" : "com.nikita.refactoring.Handlers.ObjcHandlers.ObjcSpecialCharacterHandler"
+      }
+  }
 
 }

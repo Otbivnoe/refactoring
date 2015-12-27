@@ -34,4 +34,32 @@ public class JsonHelper {
 
         return null;
     }
+
+    public static Object getObjectForKeyPath(String keyPath) {
+
+        try {
+            String[] keys = keyPath.split("\\.");
+
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject)parser.parse(new FileReader(JSON_FILE_PATH));
+
+            for (String key : keys) {
+                Object object = (Object)jsonObject.get(key);
+                if (object instanceof JSONObject) {
+                    jsonObject = (JSONObject)object;
+                    continue;
+                }
+                return object;
+            }
+            return null;
+        } catch (FileNotFoundException e) {
+            log.error("File not found", e);
+        } catch (ParseException e) {
+            log.error("Parse exception", e);
+        } catch (IOException e) {
+            log.error("IOException", e);
+        }
+
+        return null;
+    }
 }

@@ -4,14 +4,14 @@ import com.nikita.refactoring.Context;
 import com.nikita.refactoring.Handlers.IHandler;
 
 /**
- * Created by nikita on 02/10/15.
+ * Created by nikita on 27/12/15.
  */
-public class ObjcSemicolonHandler extends ObjcHandler implements IHandler
-{
+public class ObjcDefaultCharacterHandler extends ObjcHandler implements IHandler {
+
     public String handle(Context context)
     {
         setPrevCharacterForContext(context);
-        context.setCurrentStage(Context.HandlerStage.SpecialSymbol);
-        return String.valueOf(SEMICON_CHARACTER) + "\n";
+        context.setCurrentStage(Context.HandlerStage.Default);
+        return  String.valueOf(context.getCurrentCharacter());
     }
 }

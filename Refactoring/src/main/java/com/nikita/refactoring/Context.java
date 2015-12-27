@@ -3,13 +3,17 @@ package com.nikita.refactoring;
 /**
  * Created by nikita on 03/10/15.
  */
+
+
 public class Context
 {
     private char prevCharacter;
     private char currentCharacter;
     private int spaceCount;
     private String spaceSize;
-    private boolean isRunNextHandler;
+    private HandlerStage currentStage;
+
+    public enum HandlerStage {Default, SpecialSymbol}
 
     public Context()
     {
@@ -28,6 +32,7 @@ public class Context
         this.currentCharacter = ' ';
         this.spaceCount = 0;
         this.spaceSize = "\t";
+        this.currentStage = HandlerStage.Default;
     }
 
     public char getPrevCharacter() {
@@ -46,9 +51,7 @@ public class Context
         return spaceSize;
     }
 
-    public boolean isRunNextHandler() {
-        return isRunNextHandler;
-    }
+    public HandlerStage getCurrentStage() {return currentStage; }
 
     public void setPrevCharacter(char prevCharacter) {
         this.prevCharacter = prevCharacter;
@@ -66,5 +69,5 @@ public class Context
         this.spaceSize = spaceSize;
     }
 
-    public void setRunNextHandler(boolean runNextHandler) { this.isRunNextHandler = runNextHandler; }
+    public void setCurrentStage(HandlerStage  stage) {this.currentStage = stage; }
 }

@@ -35,7 +35,7 @@
 	{
 		soundOneNew = [soundOneNew stringByAppendingString:@"copy.m4a"];
 	}
- 	else 
+	 else 
 	{
 		soundOneNew = [soundOneNew stringByAppendingString:@".m4a"];
 	}
@@ -60,7 +60,7 @@
 				completionBlock(YES, exportSession.outputURL);
 			}
 		}
- 		else 
+		 else 
 		{
 			if (completionBlock) 
 			{
@@ -70,7 +70,7 @@
 			{
 				NSLog(@"AVAssetExportSessionStatusFailed");
 			}
- 			else 
+			 else 
 			{
 				NSLog(@"Export Session Status: %ld", (long)exportSession.status);
 			}
@@ -100,17 +100,17 @@
 		self.audioPlayer.delegate = self;
 		[self.audioPlayer play];
 	}
- 	else 
+	 else 
 	{
 		if ([self.audioPlayer isPlaying]) 
 		{
 			[self pausePlaying];
 		}
- 		else 
+		 else 
 		{
 			[self.audioPlayer play];
 		}
- 	}
+		 	}
 }
 
 - (void)pausePlaying
