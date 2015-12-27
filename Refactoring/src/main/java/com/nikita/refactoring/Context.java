@@ -20,14 +20,14 @@ public class Context
         defaultInitial();
     }
 
-    public Context(char character)
-    {
+    public Context(char character) {
+
         defaultInitial();
         this.currentCharacter = character;
     }
 
-    private void defaultInitial()
-    {
+    private void defaultInitial() {
+
         this.prevCharacter = ' ';
         this.currentCharacter = ' ';
         this.spaceCount = 0;

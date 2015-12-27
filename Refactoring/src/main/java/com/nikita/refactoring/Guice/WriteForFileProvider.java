@@ -18,7 +18,7 @@ public class WriteForFileProvider implements Provider<IWriteInterface> {
 
     public IWriteInterface get() {
         try {
-            WriteToFile writer = new WriteToFile((String)JsonHelper.getObjectForKey("OutputFileName"));
+            WriteToFile writer = new WriteToFile((String)JsonHelper.getObjectForKeyPath("OutputFileName"));
             return writer;
         } catch (IOException e) {
             log.error("IOException", e);

@@ -32,8 +32,8 @@ public class WriteToFile implements IWriteInterface
         }
     }
 
-    public void writeString(String str)
-    {
+    public void writeString(String str) {
+
         byte[] contentInBytes = str.getBytes();
 
         try {
@@ -43,8 +43,7 @@ public class WriteToFile implements IWriteInterface
         }
     }
 
-    protected void finalize() throws IOException
-    {
+    protected void finalize() throws IOException  {
         fileOutputStream.close();
     }
 }

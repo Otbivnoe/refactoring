@@ -14,19 +14,7 @@ import java.util.List;
 
 public class Parser
 {
-    private final List<IHandler> handlers;
-
-    public Parser(ILanguageFactory factory)
-    {
-        this.handlers = factory.refactoringHandlers();
-    }
-
-    public Parser() {
-        this.handlers = null;
-    }
-
-    public void startRefactoring(IWriteInterface write, IReadInterface reader)
-    {
+    public void startRefactoring(IWriteInterface write, IReadInterface reader) {
         Context context = new Context();
 
         while (reader.isElementAvailable()) {

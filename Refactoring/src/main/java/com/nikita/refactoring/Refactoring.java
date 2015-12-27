@@ -12,8 +12,7 @@ import java.io.IOException;
 
 public class Refactoring
 {
-    public static void main(String... aArgs) throws IOException
-    {
+    public static void main(String... aArgs) throws IOException {
         IoCManager iocManager = new IoCManager();
 
         Parser parser = new Parser();

@@ -21,8 +21,8 @@ public class RefactorModule extends AbstractModule {
     protected void configure()
     {
         try {
-            Class IWriteInterfaceProviderClass = Class.forName((String) JsonHelper.getObjectForKey("IWriteInterfaceProvider"));
-            Class IReadInterfaceProviderClass = Class.forName((String) JsonHelper.getObjectForKey("IReadInterfaceProvider"));
+            Class IWriteInterfaceProviderClass = Class.forName((String) JsonHelper.getObjectForKeyPath("IWriteInterfaceProvider"));
+            Class IReadInterfaceProviderClass = Class.forName((String) JsonHelper.getObjectForKeyPath("IReadInterfaceProvider"));
 
             bind(IWriteInterface.class).toProvider(IWriteInterfaceProviderClass);
             bind(IReadInterface.class).toProvider(IReadInterfaceProviderClass);

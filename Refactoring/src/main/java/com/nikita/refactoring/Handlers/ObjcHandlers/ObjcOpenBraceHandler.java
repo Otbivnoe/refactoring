@@ -15,6 +15,6 @@ public class ObjcOpenBraceHandler extends ObjcHandler implements IHandler
         context.setCurrentStage(Context.HandlerStage.SpecialSymbol);
         setPrevCharacterForContext(context);
 
-        return "\n" + spaces + String.valueOf(OPEN_BRACE_CHARACTER) + "\n";
+        return "\n" + spaces + String.valueOf(context.getCurrentCharacter()) + "\n";
     }
 }

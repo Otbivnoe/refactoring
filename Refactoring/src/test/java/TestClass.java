@@ -15,18 +15,17 @@ public class TestClass
     @Test
     public void testString()
     {
-//        IoCManager iocManager = new IoCManager();
-//
-//        ILanguageFactory factory = iocManager.getInstance(ILanguageFactory.class);
-//        Parser parser = new Parser();
-//
-//        WriteToString writer = new WriteToString();
-//        ReadFromString reader = new ReadFromString("string(){cout << s;}");
-//
-//        parser.startRefactoring(writer, reader);
-//
-//        String refactoringString = "string()\n{\n\tcout << s;\n}\n";
-//        System.out.print(refactoringString);
-//        assertEquals(refactoringString, writer.string);
+        IoCManager iocManager = new IoCManager();
+
+        Parser parser = new Parser();
+
+        WriteToString writer = new WriteToString();
+        ReadFromString reader = new ReadFromString("string(){cout << s;}");
+
+        parser.startRefactoring(writer, reader);
+
+        String refactoringString = "string()\n{\n\tcout << s;\n}\n";
+        System.out.print(refactoringString);
+        assertEquals(refactoringString, writer.string);
     }
 }

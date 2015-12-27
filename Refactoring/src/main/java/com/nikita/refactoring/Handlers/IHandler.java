@@ -7,10 +7,5 @@ import com.nikita.refactoring.Context;
  */
 public interface IHandler
 {
-    char OPEN_BRACE_CHARACTER = '{';
-    char CLOSE_BRACE_CHARACTER = '}';
-    char SEMICON_CHARACTER = ';';
-    char SPACE_CHARACTER = ' ';
-
     String handle(Context context);
 }

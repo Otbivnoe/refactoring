@@ -20,8 +20,7 @@ public class ReadFromFile implements IReadInterface
     private File file;
     private FileInputStream fileInputStream;
 
-    public ReadFromFile(String fileName)
-    {
+    public ReadFromFile(String fileName) {
         this.fileName = fileName;
         file = new File(fileName);
 
@@ -32,8 +31,7 @@ public class ReadFromFile implements IReadInterface
         }
     }
 
-    public boolean isElementAvailable()
-    {
+    public boolean isElementAvailable() {
         try {
             return (fileInputStream.available() > 0);
         }catch (IOException e) {
@@ -43,8 +41,7 @@ public class ReadFromFile implements IReadInterface
         return false;
     }
 
-    public char readElement()
-    {
+    public char readElement() {
         try {
             return (char) fileInputStream.read();
         } catch (IOException e) {
@@ -53,8 +50,7 @@ public class ReadFromFile implements IReadInterface
         return ' ';
     }
 
-    protected void finalize() throws IOException
-    {
+    protected void finalize() throws IOException {
         fileInputStream.close();
     }
 }

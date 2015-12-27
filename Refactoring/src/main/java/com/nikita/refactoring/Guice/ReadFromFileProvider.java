@@ -11,7 +11,7 @@ import javax.inject.Provider;
 public class ReadFromFileProvider implements Provider<IReadInterface> {
 
     public IReadInterface get() {
-        ReadFromFile reader = new ReadFromFile((String)JsonHelper.getObjectForKey("InputFileName"));
+        ReadFromFile reader = new ReadFromFile((String)JsonHelper.getObjectForKeyPath("InputFileName"));
         return reader;
     }
 }

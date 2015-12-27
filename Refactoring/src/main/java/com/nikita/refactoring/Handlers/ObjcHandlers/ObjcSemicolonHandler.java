@@ -12,6 +12,6 @@ public class ObjcSemicolonHandler extends ObjcHandler implements IHandler
     {
         setPrevCharacterForContext(context);
         context.setCurrentStage(Context.HandlerStage.SpecialSymbol);
-        return String.valueOf(SEMICON_CHARACTER) + "\n";
+        return String.valueOf(context.getCurrentCharacter()) + "\n";
     }
 }

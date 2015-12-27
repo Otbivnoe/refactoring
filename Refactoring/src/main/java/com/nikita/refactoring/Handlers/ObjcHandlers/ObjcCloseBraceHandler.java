@@ -13,6 +13,6 @@ public class ObjcCloseBraceHandler extends ObjcHandler implements IHandler
         context.setSpaceCount(context.getspaceCount()-1);
         context.setCurrentStage(Context.HandlerStage.SpecialSymbol);
         setPrevCharacterForContext(context);
-        return currentSpacesForContext(context) + String.valueOf(CLOSE_BRACE_CHARACTER) + "\n";
+        return currentSpacesForContext(context) + String.valueOf(context.getCurrentCharacter()) + "\n";
     }
 }
