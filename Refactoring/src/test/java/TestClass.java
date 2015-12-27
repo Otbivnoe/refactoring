@@ -4,7 +4,6 @@
 import static org.junit.Assert.assertEquals;
 
 import com.nikita.refactoring.Guice.IoCManager;
-import com.nikita.refactoring.LanguagesFactory.ILanguageFactory;
 import com.nikita.refactoring.Parser;
 import com.nikita.refactoring.testClasses.ReadFromString;
 import com.nikita.refactoring.testClasses.WriteToString;

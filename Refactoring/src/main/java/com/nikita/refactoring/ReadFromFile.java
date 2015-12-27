@@ -35,7 +35,6 @@ public class ReadFromFile implements IReadInterface
         try {
             return (fileInputStream.available() > 0);
         }catch (IOException e) {
-            e.printStackTrace();
             log.error("IOException", e);
         }
         return false;
